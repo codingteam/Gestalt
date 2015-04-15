@@ -1,0 +1,12 @@
+{application, gestalt,
+ [
+  {description, "GitHub statistics fetcher"},
+  {vsn, "0.0.1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, { gestalt_app, []}},
+  {env, []}
+ ]}.
