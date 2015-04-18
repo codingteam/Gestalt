@@ -1,3 +1,4 @@
 *.beam
 deps
 ebin
+erl_crash.dump
