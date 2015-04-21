@@ -13,12 +13,22 @@
 %% ===================================================================
 
 start_link() ->
-    supervisor:start_link(?MODULE, []).
+    supervisor:start_link({local, ?MODULE}, ?MODULE, []).
 
 %% ===================================================================
 %% Supervisor callbacks
 %% ===================================================================
 
 init([]) ->
-    {ok, { {one_for_one, 5, 10}, []} }.
+    Dispatch = cowboy_router:compile([
+        {'_', [{"/", public_api_http_handler, []}]}
+    ]),
+    {ok, { {one_for_one, 5, 10}, [
+        { public_api_process
+        , {cowboy, start_http, [public_api_httpd, 5, [{port, 8080}], [{env, [{dispatch, Dispatch}]}]]}
+        , permanent
+        , 1000
+        , worker
+        , []
+    }]} }.
 
