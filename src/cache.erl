@@ -16,6 +16,8 @@
 %% Records
 %% ===================================================================
 
+-include("cache_records.hrl").
+
 -record(cache_state,
     {}).
 
@@ -36,7 +38,7 @@ stop() ->
 %% Read API
 %% ===================================================================
 
-get_news(Name, Args) ->
+get_news(Name, Args = #get_news_args{}) ->
     gen_server:call(Name, {get_news, Args}).
 
 get_activity(Name) ->
@@ -49,13 +51,13 @@ get_analytics(Name) ->
 %% Write API
 %% ===================================================================
 
-append_to_news(News) ->
-    gen_server:cast(cache, {append_to_news, News}).
+append_to_news(NewsItem = #append_to_news_args{}) ->
+    gen_server:cast(cache, {append_to_news, NewsItem}).
 
-update_activity(Update) ->
+update_activity(Update = #update_activity{}) ->
     gen_server:cast(cache, {update_activity, Update}).
 
-update_analytics(Update) ->
+update_analytics(Update = #update_analytics{}) ->
     gen_server:cast(cache, {update_analytics, Update}).
 
 %% ===================================================================
