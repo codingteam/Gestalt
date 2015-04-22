@@ -1,4 +1,4 @@
--module(gestalt_sup).
+-module(public_api_sup).
 
 -behaviour(supervisor).
 
@@ -20,27 +20,15 @@ start_link() ->
 %% ===================================================================
 
 init([]) ->
+    Dispatch = cowboy_router:compile([
+        {'_', [{"/", public_api_http_handler, []}]}
+    ]),
     {ok, { {one_for_one, 5, 10}, [
-        { fetcher_sup_process
-        , {fetcher_sup, start_link, []}
+        { public_api_process
+        , {cowboy, start_http, [public_api_httpd, 5, [{port, 8080}], [{env, [{dispatch, Dispatch}]}]]}
         , permanent
         , 1000
         , worker
-        , [fetcher_sup]
-        }
-    ,   { cache_sup_process
-        , {cache_sup, start_link, []}
-        , permanent
-        , 1000
-        , worker
-        , [cache_sup]
-        }
-    ,   { public_api_sup_process
-        , {public_api_sup, start_link, []}
-        , permanent
-        , 1000
-        , worker
-        , [public_api_sup]
-        }
-    ]} }.
+        , []
+    }]} }.
 

@@ -1,4 +1,4 @@
--module(gestalt_sup).
+-module(cache_sup).
 
 -behaviour(supervisor).
 
@@ -21,26 +21,11 @@ start_link() ->
 
 init([]) ->
     {ok, { {one_for_one, 5, 10}, [
-        { fetcher_sup_process
-        , {fetcher_sup, start_link, []}
+        { cache_process
+        , {cache, start_link, []}
         , permanent
         , 1000
         , worker
-        , [fetcher_sup]
-        }
-    ,   { cache_sup_process
-        , {cache_sup, start_link, []}
-        , permanent
-        , 1000
-        , worker
-        , [cache_sup]
-        }
-    ,   { public_api_sup_process
-        , {public_api_sup, start_link, []}
-        , permanent
-        , 1000
-        , worker
-        , [public_api_sup]
-        }
-    ]} }.
+        , []
+    }]}}.
 

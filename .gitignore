@@ -1,3 +1,6 @@
 *.beam
 deps
 ebin
+erl_crash.dump
+/rel/gestalt/
+/.rebar/
