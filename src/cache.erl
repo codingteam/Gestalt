@@ -70,8 +70,12 @@ init(_Args) ->
 handle_info(_Msg, State = #cache_state{}) ->
     {noreply, State}.
 
-handle_call(_Msg, _From, State = #cache_state{}) ->
-    {noreply, State}.
+handle_call(get_analytics, _From, State = #cache_state{}) ->
+    {reply, #analytics{}, State};
+handle_call(get_activity, _From, State = #cache_state{}) ->
+    {reply, #activity{}, State};
+handle_call({get_news, _Args}, _From, State = #cache_state{}) ->
+    {reply, #news{}, State}.
 
 handle_cast(_Msg, State = #cache_state{}) ->
     {noreply, State}.
