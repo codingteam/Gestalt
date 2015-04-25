@@ -1,0 +1,13 @@
+[ { gestalt, [
+      %% Host to listen on. Should be an IP or a hostname that can be resolved
+      %% into IP of one of your interfaces (like "localhost" which is resolved
+      %% into 127.0.0.1)
+      %%
+      %% Default: listen on all interfaces
+      { http_host, "" }
+
+      %% Port to listen on
+      %%
+      %% Default: 80
+    , { http_port, "80" }
+]}].

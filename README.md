@@ -18,6 +18,12 @@ You need the following installed in your system:
 * [Erlang version 17 or above](erlang.org)
 * [rebar](https://github.com/rebar/rebar/wiki/Getting-started#first-steps)
 
+First of all, you need create a config for the service. We provide an example
+that you can copy and then edit:
+
+    $ cp rel/files/app.config.example rel/files/app.config
+    $ $EDITOR rel/files/app.config
+
 Now run:
 
     # fetch the dependencies

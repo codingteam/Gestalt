@@ -25,7 +25,14 @@ init([]) ->
     ]),
     {ok, { {one_for_one, 5, 10}, [
         { public_api_process
-        , {cowboy, start_http, [public_api_httpd, 5, [{port, 8080}], [{env, [{dispatch, Dispatch}]}]]}
+        , { cowboy
+          , start_http
+          , [ public_api_httpd
+            , 5
+            , [ { ip, application:get_env(gestalt, http_host, "") }
+              , { port, application:get_env(gestalt, http_port, "80") }
+              ]
+            , [ {env, [{dispatch, Dispatch}] }]]}
         , permanent
         , 1000
         , worker
