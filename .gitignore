@@ -5,3 +5,4 @@ erl_crash.dump
 /rel/gestalt/
 /.rebar/
 /rel/files/app.config
+/.eunit
