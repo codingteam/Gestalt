@@ -21,6 +21,7 @@ start_link() ->
 
 init([]) ->
   Dispatch = cowboy_router:compile([
+      {'_', [{"/organizations/codingteam/repos", api_repos_handler, []}]}
   ]),
   {ok, { {one_for_one, 5, 10}, [
       { public_api_process
