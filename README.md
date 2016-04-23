@@ -26,9 +26,15 @@ Now run:
 
     # fetch the dependencies
     $ rebar get-deps
+    # compile the source
+    $ rebar compile
 
-    # compile the source and generate the release
-    $ rebar compile generate
+    # generate the release
+    $ rebar generate
+    # You might get "WARN:  'generate' command does not apply to directory XYZ"
+    # It means you're running an older version of rebar. You can ignore the
+    # warning, or you can cd into rel directory before running `rebar generate`.
+    # See https://github.com/rebar/rebar/pull/254 for details
 
     # start the service
     $ ./rel/gestalt/bin/gestalt start
