@@ -20,6 +20,8 @@ start_link() ->
 %% ===================================================================
 
 init([]) ->
+  ets:new(computed_stats_cache, [set, public, named_table]),
+
   {ok, { {one_for_one, 5, 10}, [
       { fetcher_sup_process
       , {fetcher_sup, start_link, []}
@@ -36,4 +38,3 @@ init([]) ->
       , [public_api_sup]
       }
   ]} }.
-
