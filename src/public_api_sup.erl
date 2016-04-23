@@ -13,28 +13,27 @@
 %% ===================================================================
 
 start_link() ->
-    supervisor:start_link({local, ?MODULE}, ?MODULE, []).
+  supervisor:start_link({local, ?MODULE}, ?MODULE, []).
 
 %% ===================================================================
 %% Supervisor callbacks
 %% ===================================================================
 
 init([]) ->
-    Dispatch = cowboy_router:compile([
-    ]),
-    {ok, { {one_for_one, 5, 10}, [
-        { public_api_process
-        , { cowboy
-          , start_http
-          , [ public_api_httpd
-            , 5
-            , [ { ip, application:get_env(gestalt, http_host, "") }
-              , { port, application:get_env(gestalt, http_port, "80") }
-              ]
-            , [ {env, [{dispatch, Dispatch}] }]]}
-        , permanent
-        , 1000
-        , worker
-        , []
-    }]} }.
-
+  Dispatch = cowboy_router:compile([
+  ]),
+  {ok, { {one_for_one, 5, 10}, [
+      { public_api_process
+      , { cowboy
+        , start_http
+        , [ public_api_httpd
+          , 5
+          , [ { ip, application:get_env(gestalt, http_host, "") }
+            , { port, application:get_env(gestalt, http_port, "80") }
+            ]
+          , [ {env, [{dispatch, Dispatch}] }]]}
+      , permanent
+      , 1000
+      , worker
+      , []
+  }]} }.

@@ -3,4 +3,4 @@
 -export([init/2]).
 
 init(Req, Opts) ->
-    {ok, Req, Opts}.
+  {ok, Req, Opts}.
