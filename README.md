@@ -13,7 +13,7 @@ For copying terms, see LICENSE file.
 
 You need the following installed in your system:
 
-* [Erlang version 17 or above](erlang.org)
+* [Erlang version 18 or above](erlang.org)
 * [rebar](https://github.com/rebar/rebar/wiki/Getting-started#first-steps)
 
 First of all, you need to create a config for the service. We provide an example
