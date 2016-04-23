@@ -9,5 +9,5 @@
       %% Port to listen on
       %%
       %% Default: 80
-    , { http_port, "80" }
+    , { http_port, 80 }
 ]}].
