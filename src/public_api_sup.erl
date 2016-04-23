@@ -21,7 +21,6 @@ start_link() ->
 
 init([]) ->
     Dispatch = cowboy_router:compile([
-        {'_', [{"/", public_api_http_handler, []}]}
     ]),
     {ok, { {one_for_one, 5, 10}, [
         { public_api_process

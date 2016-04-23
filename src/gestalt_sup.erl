@@ -28,13 +28,6 @@ init([]) ->
         , supervisor
         , [fetcher_sup]
         }
-    ,   { cache_sup_process
-        , {cache_sup, start_link, []}
-        , permanent
-        , 1000
-        , supervisor
-        , [cache_sup]
-        }
     ,   { public_api_sup_process
         , {public_api_sup, start_link, []}
         , permanent
