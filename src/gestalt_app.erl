@@ -43,7 +43,7 @@ start(_StartType, _StartArgs) ->
               [{ip, Host}, {port, Port}],
               #{env => #{dispatch => Dispatch}}),
 
-  gestalt_sup:start_link().
+  fetchers_manager_sup:start_link().
 
 stop(_State) ->
   ok.

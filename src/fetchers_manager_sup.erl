@@ -1,4 +1,4 @@
--module(gestalt_sup).
+-module(fetchers_manager_sup).
 
 -behaviour(supervisor).
 
@@ -20,12 +20,14 @@ start_link() ->
 %% ===================================================================
 
 init([]) ->
+  UpdateInterval = application:get_env(gestalt, update_interval, 60),
+  FetchersSpecs = [repo_fetcher],
+
   {ok, { {one_for_one, 5, 10}, [
-      { fetcher_sup_process
-      , {fetcher_sup, start_link, []}
+      { fetchers_manager
+      , {fetchers_manager, start_link, [UpdateInterval, FetchersSpecs]}
       , permanent
       , 1000
-      , supervisor
-      , [fetcher_sup]
-      }
+      , worker
+      , [fetchers_manager] }
   ]} }.

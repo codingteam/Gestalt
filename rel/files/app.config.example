@@ -10,4 +10,9 @@
       %%
       %% Default: 80
     , { http_port, 80 }
+
+      %% How often to fetch data from GitHub, in seconds.
+      %%
+      %% Default: 60
+    , { update_interval, 60 }
 ]}].
